@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // function App() {
 //   return (
@@ -13,13 +13,20 @@ import React from 'react';
 //     <h1>Hello React!</h1>
 //   </div>
 // );
-const Header = <h1>Wow</h1>
 
 const App = () => {
-  const name = "sam";
+  // [default_value, function for set new value]
+  const [name, setName] = useState('Sam');
   return (
     <div>
-      <h1>Hello {name}!</h1>
+      <form>
+        <label>Input Your Name</label>
+        <input value={name} onChange={(event) => { 
+          console.log(event.target.value) 
+          setName(event.target.value)
+        }} />
+      </form>
+      <h1>Hello {name}</h1>
     </div>
   )
 };
