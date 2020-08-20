@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 // function App() {
 //   return (
@@ -16,17 +16,23 @@ import React, { useState } from 'react';
 
 const App = () => {
   // [default_value, function for set new value]
-  const [name, setName] = useState('Sam');
+  const [newTodo, setNewTodo] = useState('');
+  const onNewTodoChange = useCallback((event) => {
+    setNewTodo(event.target.value)
+  }, []);
+
   return (
     <div>
       <form>
-        <label>Input Your Name</label>
-        <input value={name} onChange={(event) => { 
-          console.log(event.target.value) 
-          setName(event.target.value)
-        }} />
+        <label htmlFor="newTodo">Enter a Todo:</label>
+        <input 
+          id="newTodo"
+          name="newTodo"
+          value={newTodo} 
+          onChange={onNewTodoChange} 
+        />
       </form>
-      <h1>Hello {name}</h1>
+      <h1>Todo: {newTodo}</h1>
     </div>
   )
 };
