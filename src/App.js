@@ -51,6 +51,11 @@ const App = () => {
         />
         <button>Add todo</button>
       </form>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.content}</li>
+        ))}
+      </ul>
     </div>
   )
 };
