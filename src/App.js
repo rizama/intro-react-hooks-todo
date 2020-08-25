@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 // function App() {
 //   return (
@@ -17,13 +17,31 @@ import React, { useState, useCallback } from 'react';
 const App = () => {
   // [default_value, function for set new value]
   const [newTodo, setNewTodo] = useState('');
+  const [todos, setTodos] = useState([]);
+  
   const onNewTodoChange = useCallback((event) => {
     setNewTodo(event.target.value)
   }, []);
 
+  const formSubmitted = useCallback((click) => {
+    click.preventDefault()
+    setTodos([...todos,
+      {
+        id: todos.length + 1,
+        content: newTodo,
+        done: false,
+      }
+    ])
+    setNewTodo('');
+  }, [newTodo, todos]);
+
+  useEffect(() => {
+    console.log(`todos`, todos);
+  }, [todos])
+
   return (
     <div>
-      <form>
+      <form onSubmit={formSubmitted}>
         <label htmlFor="newTodo">Enter a Todo:</label>
         <input 
           id="newTodo"
@@ -31,8 +49,8 @@ const App = () => {
           value={newTodo} 
           onChange={onNewTodoChange} 
         />
+        <button>Add todo</button>
       </form>
-      <h1>Todo: {newTodo}</h1>
     </div>
   )
 };
