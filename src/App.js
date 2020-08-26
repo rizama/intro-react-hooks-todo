@@ -25,6 +25,7 @@ const App = () => {
 
   const formSubmitted = useCallback((click) => {
     click.preventDefault()
+    if(!newTodo.trim()) return;
     setTodos([...todos,
       {
         id: todos.length + 1,
@@ -39,6 +40,15 @@ const App = () => {
     console.log(`todos`, todos);
   }, [todos])
 
+  const addTodo = useCallback((todo, index) => (event) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1, {
+      ...todos,
+      done: !todo.done
+    })
+    setTodos(newTodos)
+  }, [todos]);
+
   return (
     <div>
       <form onSubmit={formSubmitted}>
@@ -52,8 +62,15 @@ const App = () => {
         <button>Add todo</button>
       </form>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+        {todos.map((todo, index) => (
+          <li key={todo.id}>
+            <input 
+              checked={todo.done}
+              type="checkbox"
+              onChange={addTodo(todo, index)}
+            />
+            <span className={todo.done ? 'done' : ''}>{todo.content}</span>
+          </li>
         ))}
       </ul>
     </div>
