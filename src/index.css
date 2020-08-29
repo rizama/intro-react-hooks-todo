@@ -7,7 +7,31 @@ body {
   margin: 0 auto;
 }
 
-input, textarea, button, p, div, section, article, select {
+
+/* textarea, button, p, div, section, article, select {
+  display: block;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 1em;
+  margin: 0.5em;
+} */
+
+.button-input{
+  display: block;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 1em;
+  margin: 0.5em;
+}
+
+.button-remove{
+  font-family: sans-serif;
+  font-size: 1em;
+  margin: 0.5em;
+}
+
+
+.input-form {
   display: block;
   width: 100%;
   font-family: sans-serif;
@@ -17,4 +41,8 @@ input, textarea, button, p, div, section, article, select {
 
 .done {
   text-decoration: line-through;
+}
+
+.checkbox {
+  display: inline;
 }
