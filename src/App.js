@@ -24,7 +24,7 @@ const App = () => {
   }, [newTodo, todos]);
 
   useEffect(() => {
-    console.log(`todos`, todos);
+    // console.log(`todos`, todos);
   }, [todos])
 
   const addTodo = useCallback((todo, index) => (event) => {
@@ -65,19 +65,19 @@ const App = () => {
           onChange={onNewTodoChange} 
         />
         <button className="button-input">Add todo</button>
-        <button className="button-input" onClick={markAll}>Mark All Done</button>
+        <button className="button-mark" onClick={markAll}>Mark All Done</button>
       </form>
       <ul>
         {todos.map((todo, index) => (
-          <li key={todo.id}>
+          <li key={todo.id} className="list">
             <input 
-              className=""
+              className="checkbox"
               checked={todo.done}
               type="checkbox"
               onChange={addTodo(todo, index)}
             />
             <span className={todo.done ? 'done' : ''}>  {todo.content}</span>
-            <button className="button-remove" onClick={removeTodo(todo)}>Remove Todo</button>
+            <button className="button-remove" onClick={removeTodo(todo)}>Remove</button>
           </li>
         ))}
       </ul>
